@@ -56,7 +56,7 @@ st.write("You selected this option:", occupation)
 
 #multi_select
 multi_select = st.multiselect("Select multiple numbers",[1,2,3,4,5])
-sn = st.selectbox("Select a number",[1,2,3,4,5])
+
 
 #slider
 option1 = st.slider("Select a number", min_value=5, max_value=70, value=30, step=5)
@@ -100,7 +100,7 @@ the_time=st.time_input("The time is", datetime.time(8,45))
 
 #sidebar
 st.sidebar.title("Sidebar title")
-st.sidebar.markdown("## This is a markdown")
+st.sidebar.header("Sidebar header")
 a=st.sidebar.slider("input",0,5,2,1)
 x=st.sidebar.slider("input2")
 st.write("# sidebar input result")
@@ -116,22 +116,31 @@ st.dataframe(df.head())#dynamic
 
 #Project Example
 
-
-
-
 import pickle
-filename = 'finalized_model'
+filename = 'my_model'
 model = pickle.load(open(filename, 'rb'))
-pred = model.predict([[100,200,300]])
-st.write("prediction:", pred[0])
-
-
 st.table(df.head())
-a = st.sidebar.number_input("TV:",value=230, step=10)
-b = st.sidebar.number_input("radio:",value=37, step=10)
-c = st.sidebar.number_input("newspaper:",value=69, step=10)
+
+
+st.write(df.describe())
+
+TV = st.sidebar.number_input("TV:",min_value=5, max_value=300)
+radio = st.sidebar.number_input("radio:",min_value=1, max_value=50)
+newspaper = st.sidebar.number_input("newspaper:",min_value=0, max_value=120)
+
+
+my_dict = {
+    "TV": TV,
+    "radio": radio,
+    "newspaper": newspaper,
+}
+
+df=pd.DataFrame.from_dict([my_dict])
+st.table(df)
+
+
 if st.button("Predict"): 
-    pred = model.predict([[a,b,c]])
+    pred = model.predict(df)
     st.write(pred)
 
 
@@ -165,4 +174,6 @@ def single_customer():
 df = single_customer()
 
 st.table(df)
+
+
 
