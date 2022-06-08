@@ -20,12 +20,12 @@ st.help(range)
 st.write('Hello, *World!* :sunglasses:')
 
 #image
-img = Image.open("images.jpeg")
-st.image(img,caption="cattie",width=300)
-st.image(img,caption="cattie",use_column_width="auto")
+#img = Image.open("images.jpeg")
+#st.image(img,caption="cattie",width=300)
+#st.image(img,caption="cattie",use_column_width="auto")
 #st.help(st.image)
-my_video = open("ml.mov",'rb')
-st.video(my_video)
+#my_video = open("ml.mov",'rb')
+#st.video(my_video)
 
 st.video("https://www.youtube.com/watch?v=uHKfrz65KSU")
 
